@@ -45,8 +45,8 @@ backupFileName="backup-$currentTS.tar.gz"
 origAbsPath=$(pwd)
 
 # [TASK 6]
-# Go to detination dirctory and save its absolute path
-cd destinationDirectory
+# Go to destination dirctory and save its absolute path
+cd $destinationDirectory
 destDirAbsPath=$(pwd)
 
 # [TASK 7]
