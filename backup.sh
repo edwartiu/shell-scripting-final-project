@@ -46,7 +46,7 @@ origAbsPath=$(pwd)
 
 # [TASK 6]
 # Go to detination dirctory and save its absolute path
-cd $2
+cd destinationDirectory
 destDirAbsPath=$(pwd)
 
 # [TASK 7]
