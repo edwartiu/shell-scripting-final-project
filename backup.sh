@@ -16,18 +16,22 @@ then
 fi
 
 # [TASK 1]
-targetDirectory=
-destinationDirectory=
+# Store directory names in variables to increase readability
+targetDirectory=$1
+destinationDirectory=$2
 
 # [TASK 2]
-echo ""
-echo ""
+# Display the target and destination directory
+echo "Target directory: $targetDirectory"
+echo "Destination directory: $destinationDirectory"
 
 # [TASK 3]
-currentTS=``
+# Save the current timestamp in seconds
+currentTS=$(date +%s)
 
 # [TASK 4]
-backupFileName=""
+# Create a variable for the backup filename
+backupFileName="backup-$currentTS.tar.gz"
 
 # We're going to:
   # 1: Go into the target directory
@@ -37,32 +41,42 @@ backupFileName=""
 # To make things easier, we will define some useful variables...
 
 # [TASK 5]
-origAbsPath=``
+# Store the absolute path for the current directory
+origAbsPath=$(pwd)
 
 # [TASK 6]
-cd # <-
-destDirAbsPath=``
+# Go to detination dirctory and save its absolute path
+cd $2
+destDirAbsPath=$(pwd)
 
 # [TASK 7]
-cd # <-
-cd # <-
+# Go into the target directory
+cd $origAbsPath
+cd $targetDirectory
 
 # [TASK 8]
-yesterdayTS=
+# Create a timestamp variable to compare modification dates of files
+yesterdayTS=$(($currentTS - 24 * 60 * 60))
 
+# Create an array of files to backup 
 declare -a toBackup
 
-for file in $() # [TASK 9]
+# Iterate through all the file inside the target direcotry
+for file in $(ls -r) # [TASK 9]
 do
   # [TASK 10]
-  if (())
+  # If modification date is less than a day then add file to toBackup array
+  if (($(date -r $file +%s) > $yesterdayTS))
   then
     # [TASK 11]
+    toBackup+=($file)
   fi
 done
 
 # [TASK 12]
+# Compress and archive files
+tar -czvf $backupFileName ${toBackup[@]}
 
 # [TASK 13]
-
-# Congratulations! You completed the final project for this course!
+# Move backup file to destination directory
+mv "$backupFileName" "$destDirAbsPath"
