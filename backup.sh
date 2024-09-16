@@ -62,7 +62,7 @@ yesterdayTS=$(($currentTS - 24 * 60 * 60))
 declare -a toBackup
 
 # Iterate through all the file inside the target direcotry
-for file in $(ls -r) # [TASK 9]
+for file in $(ls -a) # [TASK 9]
 do
   # [TASK 10]
   # If modification date is less than a day then add file to toBackup array
